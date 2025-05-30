@@ -113,13 +113,13 @@ http://localhost:8081/__admin/mappings
 {
     "id": "e7eb7dde-90fb-4ad3-bc2f-67102c479ffd",
     "request": {
-        "url": "/cep/18950302",
+        "url": "/cep/18950700",
         "method": "GET"
     },
     "response": {
         "status": 200,
         "jsonBody": {
-            "zipCode": "18950302",
+            "zipCode": "18950700",
             "street": "Rua Teste 2, 500",
             "district": "Jd dos Brilhantes",
             "city": "Ipaussu",
@@ -146,7 +146,7 @@ http://localhost:8080/swagger-ui/index.html
 7 - Response
 ```
 {
-    "zipCode": "18950302",
+    "zipCode": "18950700",
     "street": "Rua Teste 2, 500",
     "district": "Jd dos Brilhantes",
     "city": "Ipaussu",
