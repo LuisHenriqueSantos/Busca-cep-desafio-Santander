@@ -46,7 +46,7 @@ public class CepService implements ICepService {
         } catch (HttpClientErrorException.NotFound ex) {
             throw new ResourceNotFoundException("Cep: " + cep + " não encontrado!");
         } catch (Exception ex) {
-            throw new RuntimeException("Error when consulting the zip service", ex);
+            throw new RuntimeException("Erro ao consultar o serviço Cep", ex);
         }
     }
 
