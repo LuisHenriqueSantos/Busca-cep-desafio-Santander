@@ -14,7 +14,6 @@ Projeto desenvolvido como parte de um desafio técnico com o objetivo de aplicar
 - Java 21
 - Maven
 - Spring Boot
-- Swagger
 - WireMock (mock da API externa de CEP)
 - MySQL (via Docker)
 - Flyway
@@ -57,10 +56,9 @@ src/
 ---
 ## 🔗 Endpoints
 
-| Método HTTP | Endpoint         | Descrição                        |
-|-------------|------------------|----------------------------------| 
-| `GET`       | `/api/v1/cep/{cep}` | Consulta dados do CEP         |
-| `GET`       | `/api/v1/historico` | Lista o histórico de consultas|
+| Método HTTP | Endpoint       | Descrição             |
+|-------------|----------------|-----------------------| 
+| `GET`       | `api/ceps/cep` | Consulta dados do CEP |
 
 ---
 
@@ -95,11 +93,11 @@ http://localhost:8081/__admin/mappings
   "response": {
     "status": 200,
     "jsonBody": {
-      "zipCode": "18950700",
-      "street": "Rua Teste 2, 500",
-      "district": "Jd dos Brilhantes",
-      "city": "Ipaussu",
-      "state": "SP"
+      "cep": "18950700",
+      "rua": "Rua Teste 2, 500",
+      "bairro": "Jd dos Brilhantes",
+      "cidade": "Ipaussu",
+      "uf": "SP"
     },
     "headers": {
       "Content-Type": "application/json"
@@ -119,11 +117,11 @@ http://localhost:8081/__admin/mappings
     "response": {
         "status": 200,
         "jsonBody": {
-            "zipCode": "18950700",
-            "street": "Rua Teste 2, 500",
-            "district": "Jd dos Brilhantes",
-            "city": "Ipaussu",
-            "state": "SP"
+            "cep": "18950700",
+            "rua": "Rua Teste 2, 500",
+            "bairro": "Jd dos Brilhantes",
+            "cidade": "Ipaussu",
+            "uf": "SP"
         },
         "headers": {
             "Content-Type": "application/json"
@@ -146,11 +144,11 @@ http://localhost:8080/swagger-ui/index.html
 7 - Response
 ```
 {
-    "zipCode": "18950700",
-    "street": "Rua Teste 2, 500",
-    "district": "Jd dos Brilhantes",
-    "city": "Ipaussu",
-    "state": "SP"
+    "cep": "18950700",
+    "rua": "Rua Teste 2, 500",
+    "bairro": "Jd dos Brilhantes",
+    "cidade": "Ipaussu",
+    "uf": "SP"
 }
 ```
 8 - Execute a Class de inicialização
