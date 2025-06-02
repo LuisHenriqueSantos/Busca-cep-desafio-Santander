@@ -9,19 +9,22 @@ Projeto desenvolvido como parte de um desafio técnico com o objetivo de aplicar
 4. Aplicar princípios básicos de SOLID.
 5. Disponibilizar o repositório publicamente no GitHub.
 
+## 👨‍💻 Desenho de solução para o desafio
+
+![Image](https://github.com/user-attachments/assets/35d8b76e-9310-4a7e-832b-8485baaa0beb)
+
 ## 🛠️ Tecnologias Utilizadas
 
 - Java 21
 - Maven
 - Spring Boot
-- Swagger
 - WireMock (mock da API externa de CEP)
 - MySQL (via Docker)
 - Flyway
 - Swagger
 - Docker
 
-- ## 📌 Funcionalidades
+## 📌 Funcionalidades
 
 - ✅ Consultar CEPs via API externa mockada
 - ✅ Gravar logs com data/hora no banco de dados
@@ -29,8 +32,8 @@ Projeto desenvolvido como parte de um desafio técnico com o objetivo de aplicar
 - ✅ Utilizar Docker + Banco + Mock + Spring Boot
 - ✅ Documentar e expor o projeto publicamente
 
-- ## 📊 Fluxo da Aplicação
-- ✅ Cliente faz requisição: `/api/zips/{cep}`
+## 📊 Fluxo da Aplicação
+- ✅ Cliente faz requisição: `/api/ceps/{cep}`
 - ✅ Controller delega para Service
 - ✅ Service chama API externa (Wiremock)
 - ✅ Resposta é retornada ao cliente
@@ -57,49 +60,46 @@ src/
 ---
 ## 🔗 Endpoints
 
-| Método HTTP | Endpoint         | Descrição                        |
-|-------------|------------------|----------------------------------| 
-| `GET`       | `/api/v1/cep/{cep}` | Consulta dados do CEP         |
-| `GET`       | `/api/v1/historico` | Lista o histórico de consultas|
+| Método HTTP | Endpoint       | Descrição             |
+|-------------|----------------|-----------------------| 
+| `GET`       | `api/ceps/cep` | Consulta dados do CEP |
 
 ---
 
-🧩 Princípios SOLID Aplicados
-S - Separação clara de responsabilidades entre controller, service e repository.
-O - Fácil extensão para novos tipos de busca de endereço (ex: por logradouro).
-L - Substituição de implementações simuladas da API (ex: WireMock) por reais sem alterar o contrato.
-I - Uso de interfaces como ICepController.
-D - Inversão de dependência através de injeção via Spring.
-
-
+## 🧩 Princípios SOLID Aplicados
+- **S** - Separação clara de responsabilidades entre controller, service e repository.
+- **O** - Fácil extensão para novos tipos de busca de endereço (ex: por logradouro).
+- **L** - Substituição de implementações simuladas da API (ex: WireMock) por reais sem alterar o contrato.
+- **I** - Uso de interfaces como ICepController.
+- **D** - Inversão de dependência através de injeção via Spring.
 
 ## ▶️ Como executar
 
-1 - Executar o container para o Wiremock
-```
-  docker run -d --name wiremock -p 8081:8080 wiremock/wiremock
-```
-
-2 - Fazer inserção dos stud mappings via postman
-```
-http://localhost:8081/__admin/mappings
+### 1. Executar o container para o Wiremock
+```bash
+docker run -d --name wiremock -p 8081:8080 wiremock/wiremock
 ```
 
-3 - Exemplo de Json (stub mappings) a ser inserido
+### 2. Fazer inserção dos stub mappings via Postman
 ```
+POST http://localhost:8081/__admin/mappings
+```
+
+### 3. Exemplo de JSON (stub mappings) a ser inserido
+```json
 {
   "request": {
     "method": "GET",
-    "url": "/cep/18950700"
+    "url": "/cep/18953008"
   },
   "response": {
     "status": 200,
     "jsonBody": {
-      "zipCode": "18950700",
-      "street": "Rua Teste 2, 500",
-      "district": "Jd dos Brilhantes",
-      "city": "Ipaussu",
-      "state": "SP"
+      "cep": "18953008",
+      "rua": "Rua Teste 2, 500",
+      "bairro": "Jd dos Brilhantes",
+      "cidade": "Ipaussu",
+      "uf": "SP"
     },
     "headers": {
       "Content-Type": "application/json"
@@ -108,22 +108,22 @@ http://localhost:8081/__admin/mappings
 }
 ```
 
-4 - Exemplo de retorno do stubs
-```
+### 4. Exemplo de retorno do stubs
+```json
 {
     "id": "e7eb7dde-90fb-4ad3-bc2f-67102c479ffd",
     "request": {
-        "url": "/cep/18950700",
+        "url": "/cep/18953008",
         "method": "GET"
     },
     "response": {
         "status": 200,
         "jsonBody": {
-            "zipCode": "18950700",
-            "street": "Rua Teste 2, 500",
-            "district": "Jd dos Brilhantes",
-            "city": "Ipaussu",
-            "state": "SP"
+            "cep": "18953008",
+            "rua": "Rua Teste 2, 500",
+            "bairro": "Jd dos Brilhantes",
+            "cidade": "Ipaussu",
+            "uf": "SP"
         },
         "headers": {
             "Content-Type": "application/json"
@@ -133,38 +133,33 @@ http://localhost:8081/__admin/mappings
 }
 ```
 
-5 - Testando a aplicação via postman
+### 5. Testando a aplicação via Postman
 ```
-http://localhost:8080/api/ceps/:cep
+GET http://localhost:8080/api/ceps/cep
 ```
 
-6 - Testando via swagger
+### 6. Testando via Swagger
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-7 - Response
-```
+### 7. Exemplo de Response
+```json
 {
-    "zipCode": "18950700",
-    "street": "Rua Teste 2, 500",
-    "district": "Jd dos Brilhantes",
-    "city": "Ipaussu",
-    "state": "SP"
+    "cep": "18953008",
+    "rua": "Rua Teste 2, 500",
+    "bairro": "Jd dos Brilhantes",
+    "cidade": "Ipaussu",
+    "uf": "SP"
 }
 ```
-8 - Execute a Class de inicialização
+
+### 8. Execute a classe de inicialização
+Execute a classe `BuscaCepApplication.java`
 
 # 🌐 Acessando a API
 Após subir a aplicação, acesse:
 - Documentação: [Acesse a documentação aqui](http://localhost:8080/v3/api-docs)
 
-
 🧑‍💻 Autor
 Desenvolvido por **Luis Henrique Santos**
-
-
-
-
-
-
