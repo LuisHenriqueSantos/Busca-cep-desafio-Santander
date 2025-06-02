@@ -9,6 +9,10 @@ Projeto desenvolvido como parte de um desafio técnico com o objetivo de aplicar
 4. Aplicar princípios básicos de SOLID.
 5. Disponibilizar o repositório publicamente no GitHub.
 
+## 👨‍💻 Desenho de solução para o desafio
+
+![Image](https://github.com/user-attachments/assets/35d8b76e-9310-4a7e-832b-8485baaa0beb)
+
 ## 🛠️ Tecnologias Utilizadas
 
 - Java 21
