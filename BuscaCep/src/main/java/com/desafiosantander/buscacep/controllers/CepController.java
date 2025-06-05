@@ -1,4 +1,4 @@
-package com.desafiosantander.buscacep.docs;
+package com.desafiosantander.buscacep.controllers;
 
 import com.desafiosantander.buscacep.record.CepRecord;
 import com.desafiosantander.buscacep.service.ICepService;

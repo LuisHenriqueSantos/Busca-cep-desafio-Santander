@@ -19,7 +19,7 @@ public class CepService implements ICepService {
     private final HistoricoRepository repository;
     private final ObjectMapper objectMapper;
 
-    @Value("${zip.api.url}")
+    @Value("${cep.api.url}")
     private String urlBase;
 
     public CepService(RestTemplate restTemplate, HistoricoRepository repository, ObjectMapper objectMapper) {

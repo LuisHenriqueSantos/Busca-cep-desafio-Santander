@@ -19,6 +19,6 @@ springdoc:
   paths-to-match: /api/**
   swagger-ui:
     use-root-path: true
-zip:
+cep:
   api:
     url: http://localhost:8081/cep/
