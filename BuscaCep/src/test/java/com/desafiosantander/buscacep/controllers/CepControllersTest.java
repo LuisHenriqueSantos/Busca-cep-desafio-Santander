@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test") // Usa o profile de teste
+@ActiveProfiles("test")
 public class CepControllersTest {
 
     private static final String MOCKED_RESULT =
@@ -34,7 +34,7 @@ public class CepControllersTest {
             "\"uf\": \"SP\"" +
             "}";
 
-    private static WireMockServer wireMockeServer = new WireMockServer(options().port(8081));
+    private static WireMockServer wireMockeServer = new WireMockServer(options().port(8082));
     
     @Autowired
     private MockMvc mockMvc;
@@ -43,24 +43,24 @@ public class CepControllersTest {
     private ObjectMapper objectMapper;
 
     @BeforeAll
-    static void beforeAll() throws JsonProcessingException { // Inicializa antes de tudo
+    static void beforeAll() throws JsonProcessingException { 
         wireMockeServer.start();
     }
     
     @BeforeEach
     void setUp() {
-        wireMockeServer.resetAll(); // Para cada teste eu vou ter um cenário limpo 
+        wireMockeServer.resetAll();
     }
     
     @AfterAll
-    static void afterAll() { // Depois que todos os testes foi executado ele para a aplicação do wiremock
+    static void afterAll() {
         wireMockeServer.stop();
     }
 
     @Test
     public void testFindCep() throws Exception {
         wireMockeServer.stubFor(
-                WireMock.get(urlPathEqualTo("/cep/18953007")) // Incluir o /cep/ no path
+                WireMock.get(urlPathEqualTo("/cep/18953007"))
                         .willReturn(aResponse()
                                 .withStatus(200)
                                 .withHeader("Content-Type", "application/json")
@@ -77,8 +77,6 @@ public class CepControllersTest {
                 .andExpect(jsonPath("$.uf").value("SP"));
         
         Assertions.assertTrue(resultActions.andReturn().getResponse().getContentAsString().contains("Rua 2 rural, 500"));
-        //Assertions.assertThrows(()-> {})
-        //System.out.println(resultActions.andReturn().getResponse().getContentAsString());
     }
     
 }
